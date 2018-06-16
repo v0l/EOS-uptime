@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>bitcoin-uptime</title>
-  <meta name="description" content="bitcoin network reliability">
-  <meta name="keywords" content="bitcoin uptime btc bitcoin network reliability decentralized currency cryptocurrency digital-currency virtual-currency cryptography blockchain block crypto">
+  <title>EOS-uptime</title>
+  <meta name="description" content="EOS network reliability">
+  <meta name="keywords" content="EOS uptime btc EOS network reliability decentralized currency cryptocurrency digital-currency virtual-currency cryptography blockchain block crypto">
   
   <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
   <script src="scripts/jquery-3.1.1.min.js"></script>
@@ -13,20 +13,20 @@
 <body>
   <div class="ui container" style="padding-top: 2em;">
     <center>
-      <h2>The Bitcoin network has been functional for</h2>
+      <h2>The EOS network has been functional for</h2>
 
       <div class="ui statistic">
         <h1 id="demo" class="value"></h1>
       </div>
 
-      <h2>of the time since its inception on Jan 3 2009 02:54:25 GMT</h2>
+      <h2>of the time since mainnet launch June 15 2018 17:50:00 UTC</h2>
 
       <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
       <h3>Contributions</h3>
 
       <h4>Bitcoin</h4>
-      <a title="donations keep this server up :)" href="bitcoin:352896JDeD1jajmaUYy4xzqgGocDsQY6Hz" class="ui labeled icon button"><i class="ui bitcoin icon"></i>352896JDeD1jajmaUYy4xzqgGocDsQY6Hz</a>
+      <a title="donations keep this server up :)" href="bitcoin:3AL9jqxVTjAZJMseBBnC75F3S6r4HSphUt" class="ui labeled icon button"><i class="ui bitcoin icon"></i>352896JDeD1jajmaUYy4xzqgGocDsQY6Hz</a>
 
       <h4>Code</h4>
       <a href="https://github.com/findbl0k/bitcoinUptime" class="ui labeled icon button"><i class="ui fork icon"></i>Fork me!</a>
@@ -38,15 +38,26 @@
     var timenow = new Date().getTime() / 1000;
     //current time in seconds from the unix epoch start
 
-    var downtime = (6*60*60+20*60);
-    //6:20 of downtime on 3/12/2013 
-    //converted to seconds
-    //source: http://vincesamios.com/bitcoins/accidental-hardfork-the-resilience-of-a-fledgling-bitcoin
+    var downtime = [
+		{
+			name: "",
+			start: 1529143020,
+			end: 1529161620,
+			links: [
+				"https://medium.com/@eosnewyork/eos-mainnet-status-update-8e77ba960520",
+				"https://twitter.com/EOSauthority/status/1008003223586791430"
+			]
+		}
+	];
 
-    var totaltime = timenow-1230951265;
-    //where 1230951265 is the number of seconds since the unix epoch start at the time of the first block on Jan 3 2009 02:54:25 GMT
+	var total_downtime = 0;
+	for(var x in downtime) {
+		total_downtime += (downtime[x].end - downtime[x].start);
+	}
+    var totaltime = timenow-1529085000;
+    //acording to the tweet timestamp here - https://twitter.com/EOSauthority/status/1007319398259085313
 
-    var uptime = 100*(totaltime-downtime)/totaltime;
+    var uptime = 100*(totaltime-total_downtime)/totaltime;
     var printme = uptime.toFixed(9).toString().concat(" %");
 
     document.getElementById("demo").innerHTML = printme;
