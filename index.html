@@ -19,7 +19,7 @@
         <h1 id="demo" class="value"></h1>
       </div>
 
-      <h2>of the time since mainnet launch June 15 2018 17:50:00 UTC</h2>
+      <h2>of the time since mainnet launch June 15 2018 17:44:00 UTC</h2>
 
       <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
@@ -41,8 +41,8 @@
     var downtime = [
 		{
 			name: "",
-			start: 1529143020,
-			end: 1529161620,
+			start: 1529142960,
+			end: 1529160480,
 			links: [
 				"https://medium.com/@eosnewyork/eos-mainnet-status-update-8e77ba960520",
 				"https://twitter.com/EOSauthority/status/1008003223586791430"
@@ -54,9 +54,11 @@
 	for(var x in downtime) {
 		total_downtime += (downtime[x].end - downtime[x].start);
 	}
-    var totaltime = timenow-1529085000;
-    //acording to the tweet timestamp here - https://twitter.com/EOSauthority/status/1007319398259085313
-
+    var totaltime = timenow-1529084640;
+    //acording to the tweet timestamp here - 
+	// 1) https://twitter.com/EOSauthority/status/1007319398259085313
+	// 2) https://twitter.com/eosnewyork/status/1007317905724379136
+	
     var uptime = 100*(totaltime-total_downtime)/totaltime;
     var printme = uptime.toFixed(9).toString().concat(" %");
 
